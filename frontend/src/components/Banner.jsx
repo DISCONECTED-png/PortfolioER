@@ -48,9 +48,17 @@ const Banner = () => {
         <p>
         A full-stack developer passionate about building scalable, user-focused web and mobile applications. With hands-on expertise in the MERN stack, Flutter, and Firebase, I’ve crafted projects like Lost Pigeon, Pager, and Crypto_Quest. I thrive on blending AI, real-time systems, and modern tech to deliver responsive, cutting-edge solutions.
         </p>
-        <button onClick={() => console.log('Connect')}>
-          Let's Connect <ArrowRightCircle />
-        </button>
+        <button
+  onClick={() => {
+    const section = document.getElementById('cont');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }}
+>
+  Let's Connect <ArrowRightCircle />
+</button>
+
       </div>
     </div>
     </div>

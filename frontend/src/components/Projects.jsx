@@ -3,10 +3,19 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import TrackVisibility from "react-on-screen";
 import { ProjectCard } from "./ProjectCard";
 import post1 from "../assets/post1.png";
-import pager from "../assets/pager.png";
-
+import pager from "../assets/pager.svg";
+import Jobpic from "../assets/Jobshield.svg"
+import kanpic from "../assets/kanbee.svg"
+import cryp from "../assets/cryptoquest.svg"
+import football from "../assets/football.svg"
 const Projects = () => {
   const projects = [
+    {
+      title: "JobShield",
+      description: "Detects fraudulent job offers using AI and NLP.",
+      imgUrl: Jobpic,
+      url: "https://jobshield.onrender.com/",
+    },
     {
       title: "Lost Pigeon",
       description: "MERN Stack Microblogging Platform",
@@ -14,10 +23,15 @@ const Projects = () => {
       url: "https://lostpigeon.onrender.com/",
     },
     {
+      title: "Kanbee",
+      description: "Kanbee - Smart Taskboard with smart assign features and drag and drop functionality using Socket.io",
+      imgUrl: kanpic,
+      url: "https://kanbee.onrender.com/",
+    },
+    {
       title: "Crypto_Quest",
       description: "React JS app for tracking cryptocurrencies.",
-      imgUrl:
-        "https://static-00.iconduck.com/assets.00/generic-cryptocurrency-icon-2048x2048-8uz1hlry.png",
+      imgUrl:cryp,
       url: "https://cryptoquest100.netlify.app/",
     },
     {
@@ -29,15 +43,8 @@ const Projects = () => {
     {
       title: "Final Whistle",
       description: "Track and manage sports games.",
-      imgUrl:
-        "https://static.vecteezy.com/system/resources/previews/017/171/328/non_2x/ball-for-soccer-football-icon-in-neomorphism-style-for-mobile-app-sport-equipment-button-for-mobile-application-or-web-on-white-background-vector.jpg",
+      imgUrl:football,
       url: "https://github.com/DISCONECTED-png/Api_pl_table_bloc_flutter",
-    },
-    {
-      title: "Weather App",
-      description: "Fetch weather data from an API.",
-      imgUrl: "https://cdn-icons-png.flaticon.com/512/7477/7477790.png",
-      url: "https://github.com/DISCONECTED-png/Weather-App",
     },
   ];
 

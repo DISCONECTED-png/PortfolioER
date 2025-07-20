@@ -2,6 +2,13 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import nodeimg from "../assets/nodejs.svg"
+import reactimg from "../assets/react.svg"
+import mongoimg from "../assets/mongodb.svg"
+import flutterimg from "../assets/flutter.svg"
+import firebaseimg from "../assets/firebase.svg"
+import sql from "../assets/sql.svg"
+import unreal from "../assets/unreal.svg"
 
 const Skills = () => {
   const responsive = {
@@ -42,7 +49,7 @@ const Skills = () => {
               >
                 <div className="item">
                   <img
-                    src="https://static-00.iconduck.com/assets.00/node-js-icon-1817x2048-g8tzf91e.png"
+                    src={nodeimg}
                     alt="Node JS"
                   />
                   <h4>Node JS</h4>
@@ -56,42 +63,42 @@ const Skills = () => {
                 </div>
                 <div className="item">
                   <img
-                    src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"
+                    src={reactimg}
                     alt="React"
                   />
                   <h4>React JS</h4>
                 </div>
                 <div className="item">
                   <img
-                    src="https://d2lgmzy8vjj79z.cloudfront.net/mongodb.svg"
+                    src={mongoimg}
                     alt="Mongo"
                   />
                   <h4>Mongodb</h4>
                 </div>
                 <div className="item">
                   <img
-                    src="https://img.icons8.com/?size=100&id=XPbkdNSTCUyN&format=png&color=52A3C8"
+                    src={flutterimg}
                     alt="Flutter"
                   />
                   <h4>Flutter</h4>
                 </div>
                 <div className="item">
                   <img
-                    src="https://miro.medium.com/v2/resize:fit:300/1*R4c8lHBHuH5qyqOtZb3h-w.png"
+                    src={firebaseimg}
                     alt="Firebase"
                   />
                   <h4>Firebase</h4>
                 </div>
                 <div className="item">
                   <img
-                    src="https://png.pngtree.com/png-vector/20231023/ourmid/pngtree-designing-a-uiux-app-logo-sql-png-image_10229830.png"
+                    src={sql}
                     alt="SQL"
                   />
                   <h4>SQL</h4>
                 </div>
                 <div className="item">
                   <img
-                    src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/video-games/unreal-engine-qdh1c46xy8c1nedruo2v5.png/unreal-engine-xwo7bd8vu6fzpnkcifgtu.png?_a=DATAdtAAZAA0"
+                    src={unreal}
                     alt="Unreal"
                   />
                   <h4>Unreal</h4>
