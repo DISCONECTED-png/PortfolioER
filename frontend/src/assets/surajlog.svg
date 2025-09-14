@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+  <!-- Blue S -->
+  <text x="100" y="100" font-family="Times New Roman, serif" font-size="100" fill="blue">S</text>
+  <!-- Orange E, overlapped & slightly lower -->
+  <text x="140" y="120" font-family="Times New Roman, serif" font-size="100" fill="#FF7F00">E</text>
+</svg>

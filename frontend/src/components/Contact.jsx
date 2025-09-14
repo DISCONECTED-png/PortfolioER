@@ -46,10 +46,10 @@ export const Contact = () => {
   };
 
   return (
-    <div id="cont">
-    <section className="contact">
+    <section className="contact" id="contact">
       {/* Left Side: Image */}
-      <Contactimg/>
+      <Contactimg />
+
       {/* Right Side: Form */}
       <div className="form-container">
         <h2>Get In Touch</h2>
@@ -95,6 +95,5 @@ export const Contact = () => {
         </form>
       </div>
     </section>
-    </div>
   );
 };

@@ -4,10 +4,12 @@ import TrackVisibility from "react-on-screen";
 import { ProjectCard } from "./ProjectCard";
 import post1 from "../assets/post1.png";
 import pager from "../assets/pager.svg";
-import Jobpic from "../assets/Jobshield.svg"
-import kanpic from "../assets/kanbee.svg"
-import cryp from "../assets/cryptoquest.svg"
-import football from "../assets/football.svg"
+import Jobpic from "../assets/Jobshield.svg";
+import kanpic from "../assets/kanbee.svg";
+import cryp from "../assets/cryptoquest.svg";
+import football from "../assets/football.svg";
+import suraj from "../assets/surajlog.svg";
+
 const Projects = () => {
   const projects = [
     {
@@ -23,15 +25,23 @@ const Projects = () => {
       url: "https://lostpigeon.onrender.com/",
     },
     {
+      title: "Suraj Enterprises",
+      description:
+        "Created website for Suraj Enterprises India's Trusted Industrial Blower",
+      imgUrl: suraj,
+      url: "https://www.surajenterprises.org/",
+    },
+    {
       title: "Kanbee",
-      description: "Kanbee - Smart Taskboard with smart assign features and drag and drop functionality using Socket.io",
+      description:
+        "Smart Taskboard with smart assign features and drag/drop using Socket.io",
       imgUrl: kanpic,
       url: "https://kanbee.onrender.com/",
     },
     {
       title: "Crypto_Quest",
       description: "React JS app for tracking cryptocurrencies.",
-      imgUrl:cryp,
+      imgUrl: cryp,
       url: "https://cryptoquest100.netlify.app/",
     },
     {
@@ -43,51 +53,50 @@ const Projects = () => {
     {
       title: "Final Whistle",
       description: "Track and manage sports games.",
-      imgUrl:football,
+      imgUrl: football,
       url: "https://github.com/DISCONECTED-png/Api_pl_table_bloc_flutter",
     },
   ];
 
   return (
-    <div id="project">
-      <section className="project" id="projects">
-        <Container>
-          <Row>
-            <Col size={12}>
-              <TrackVisibility>
-                {({ isVisible }) => (
-                  <div
-                    className={isVisible ? "animate__animated animate__fadeIn" : ""}
-                  >
-                    <h2>Projects</h2>
-                    <p>
-                      Explore my portfolio of projects showcasing a range of
-                      technologies and innovative solutions.
-                    </p>
-                    <Tab.Container id="projects-tabs" defaultActiveKey="first">
-                      <Nav
-                        variant="pills"
-                        className="justify-content-center align-items-center mb-4"
-                      >
-                      </Nav>
-                      <Tab.Content>
-                        <Tab.Pane eventKey="first">
-                          <Row className="justify-content-center">
-                            {projects.map((project, index) => (
-                              <ProjectCard key={index} {...project} />
-                            ))}
-                          </Row>
-                        </Tab.Pane>
-                      </Tab.Content>
-                    </Tab.Container>
-                  </div>
-                )}
-              </TrackVisibility>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </div>
+    <section className="project" id="project">
+      <Container>
+        <Row>
+          <Col size={12}>
+            <TrackVisibility>
+              {({ isVisible }) => (
+                <div
+                  className={
+                    isVisible ? "animate__animated animate__fadeIn" : ""
+                  }
+                >
+                  <h2>Projects</h2>
+                  <p>
+                    Explore my portfolio of projects showcasing a range of
+                    technologies and innovative solutions.
+                  </p>
+                  <Tab.Container id="projects-tabs" defaultActiveKey="first">
+                    <Nav
+                      variant="pills"
+                      className="justify-content-center align-items-center mb-4"
+                    ></Nav>
+                    <Tab.Content>
+                      <Tab.Pane eventKey="first">
+                        <Row className="justify-content-center">
+                          {projects.map((project, index) => (
+                            <ProjectCard key={index} {...project} />
+                          ))}
+                        </Row>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Tab.Container>
+                </div>
+              )}
+            </TrackVisibility>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 };
 

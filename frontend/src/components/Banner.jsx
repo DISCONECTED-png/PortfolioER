@@ -46,7 +46,9 @@ const Banner = () => {
           Hi, I am Anant, <span className="wrap">{text}</span>
         </h1>
         <p>
-        A full-stack developer passionate about building scalable, user-focused web and mobile applications. With hands-on expertise in the MERN stack, Flutter, and Firebase, I’ve crafted projects like Lost Pigeon, Pager, and Crypto_Quest. I thrive on blending AI, real-time systems, and modern tech to deliver responsive, cutting-edge solutions.
+        CS undergrad at IIIT Agartala with hands-on expertise in the MERN stack, Flutter, Firebase, 
+            and NLP. Passionate about building scalable, user-focused apps and websites with clean 
+            architecture and seamless user experiences.
         </p>
         <button
   onClick={() => {

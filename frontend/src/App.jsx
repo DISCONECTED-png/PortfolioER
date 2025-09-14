@@ -7,6 +7,7 @@ import Projects from './components/Projects'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import Nav from './components/Navbar'
+import Experience from './components/Experience'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,6 +17,7 @@ function App() {
       <Nav/>
       <Banner/>
       <Skills/>
+      <Experience/>
       <Projects/>
       <Contact/>
       <Footer/>
