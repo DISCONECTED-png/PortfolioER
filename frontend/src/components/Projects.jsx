@@ -5,7 +5,7 @@ import { ProjectCard } from "./ProjectCard";
 import post1 from "../assets/post1.png";
 import pager from "../assets/pager.svg";
 import Jobpic from "../assets/Jobshield.svg";
-import kanpic from "../assets/kanbee.svg";
+import kanpic from "../assets/Kanbee.svg";
 import cryp from "../assets/cryptoquest.svg";
 import football from "../assets/football.svg";
 import suraj from "../assets/surajlog.svg";
