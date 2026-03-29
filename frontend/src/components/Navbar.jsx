@@ -3,144 +3,91 @@ import React, { useEffect, useRef, useState } from "react";
 const Nav = () => {
   const [activelink, setactivelink] = useState("home");
   const [scrolled, setscrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const ticking = useRef(false);
   const activeRef = useRef(activelink);
-
-  // Sections that your nav expects — adjust if you have different ids
   const sectionIds = ["home", "skills", "experience", "project", "contact"];
 
-  // keep ref in sync with state
-  useEffect(() => {
-    activeRef.current = activelink;
-  }, [activelink]);
+  useEffect(() => { activeRef.current = activelink; }, [activelink]);
 
   useEffect(() => {
-    const updateActiveByViewportCenter = () => {
+    const updateActive = () => {
       const centerY = window.scrollY + window.innerHeight / 2;
       let minDist = Number.POSITIVE_INFINITY;
       let nearestId = activeRef.current;
-
       sectionIds.forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
         const rect = el.getBoundingClientRect();
         const top = rect.top + window.scrollY;
-        const bottom = top + rect.height;
-        const sectionCenter = (top + bottom) / 2;
+        const sectionCenter = top + rect.height / 2;
         const dist = Math.abs(centerY - sectionCenter);
-
-        if (dist < minDist) {
-          minDist = dist;
-          nearestId = id;
-        }
+        if (dist < minDist) { minDist = dist; nearestId = id; }
       });
-
-      if (nearestId && nearestId !== activeRef.current) {
+      if (nearestId !== activeRef.current) {
         setactivelink(nearestId);
         activeRef.current = nearestId;
       }
     };
-
     const onScroll = () => {
       setscrolled(window.scrollY > 50);
       if (!ticking.current) {
         ticking.current = true;
-        window.requestAnimationFrame(() => {
-          updateActiveByViewportCenter();
-          ticking.current = false;
-        });
+        window.requestAnimationFrame(() => { updateActive(); ticking.current = false; });
       }
     };
-
-    const onResize = () => {
-      if (!ticking.current) {
-        ticking.current = true;
-        window.requestAnimationFrame(() => {
-          updateActiveByViewportCenter();
-          ticking.current = false;
-        });
-      }
-    };
-
-    // initial check (in case user loads mid-page)
-    updateActiveByViewportCenter();
-
+    updateActive();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []); // eslint-disable-line
 
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-    };
-    // empty deps on purpose so listeners attach once
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // helper to set active immediately on click
   function onupdateactivelink(id) {
     setactivelink(id);
     activeRef.current = id;
+    setMenuOpen(false);
   }
+
+  const links = ["home", "skills", "experience", "project", "contact"];
+  const labels = { home: "Home", skills: "Skills", experience: "Experience", project: "Projects", contact: "Contact" };
 
   return (
     <nav className={scrolled ? "scrolled" : ""}>
-      <div>My Portfolio</div>
-      <div className="rightside">
+      <a href="#home" className="nav-logo" onClick={() => onupdateactivelink("home")}>
+        <div className="nav-logo-mark">A</div>
+        <span className="nav-logo-text">Anant Moti</span>
+      </a>
+
+      <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div className={`rightside ${menuOpen ? "open" : ""}`}>
         <ul>
-          <li>
-            <a
-              className={activelink === "home" ? "activenavbarlink" : "navbarlink"}
-              onClick={() => onupdateactivelink("home")}
-              href="#home"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              className={activelink === "skills" ? "activenavbarlink" : "navbarlink"}
-              onClick={() => onupdateactivelink("skills")}
-              href="#skills"
-            >
-              Skills
-            </a>
-          </li>
-          <li>
-            <a
-              className={activelink === "experience" ? "activenavbarlink" : "navbarlink"}
-              onClick={() => onupdateactivelink("experience")}
-              href="#experience"
-            >
-              Experience
-            </a>
-          </li>
-          <li>
-            <a
-              className={activelink === "project" ? "activenavbarlink" : "navbarlink"}
-              onClick={() => onupdateactivelink("project")}
-              href="#project"
-            >
-              Projects
-            </a>
-          </li>
-          <li>
-            <a
-              className={activelink === "contact" ? "activenavbarlink" : "navbarlink"}
-              onClick={() => onupdateactivelink("contact")}
-              href="#contact"
-            >
-              Contact
-            </a>
-          </li>
+          {links.map((id) => (
+            <li key={id}>
+              <a
+    className={activelink === id ? "activenavbarlink" : "navbarlink"}
+    onClick={() => onupdateactivelink(id)}
+    href={`#${id}`}
+  >
+                {labels[id]}
+              </a>
+            </li>
+          ))}
           <span className="navbar-text">
-          <div className="social-icon">
-              <a href="https://www.linkedin.com/in/anant-moti-465893287"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.996 16V15.9993H16V10.1313C16 7.26065 15.382 5.04932 12.026 5.04932C10.4127 5.04932 9.33 5.93465 8.888 6.77398H8.84133V5.31732H5.65933V15.9993H8.97267V10.71C8.97267 9.31732 9.23667 7.97065 10.9613 7.97065C12.6607 7.97065 12.686 9.55998 12.686 10.7993V16H15.996Z" fill="white" />
-                <path d="M0.264008 5.31812H3.58134V16.0001H0.264008V5.31812Z" fill="white" />
-                <path d="M1.92133 0C0.860667 0 0 0.860667 0 1.92133C0 2.982 0.860667 3.86067 1.92133 3.86067C2.982 3.86067 3.84267 2.982 3.84267 1.92133C3.842 0.860667 2.98133 0 1.92133 0V0Z" fill="white" />
-              </svg></a>
-              <a href="https://github.com/DISCONECTED-png"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#ffffff" fill="none">
-                <path d="M6.51734 17.1132C6.91177 17.6905 8.10883 18.9228 9.74168 19.2333M9.86428 22C8.83582 21.8306 2 19.6057 2 12.0926C2 5.06329 8.0019 2 12.0008 2C15.9996 2 22 5.06329 22 12.0926C22 19.6057 15.1642 21.8306 14.1357 22C14.1357 22 13.9267 18.5826 14.0487 17.9969C14.1706 17.4113 13.7552 16.4688 13.7552 16.4688C14.7262 16.1055 16.2043 15.5847 16.7001 14.1874C17.0848 13.1032 17.3268 11.5288 16.2508 10.0489C16.2508 10.0489 16.5318 7.65809 15.9996 7.56548C15.4675 7.47287 13.8998 8.51192 13.8998 8.51192C13.4432 8.38248 12.4243 8.13476 12.0018 8.17939C11.5792 8.13476 10.5568 8.38248 10.1002 8.51192C10.1002 8.51192 8.53249 7.47287 8.00036 7.56548C7.46823 7.65809 7.74917 10.0489 7.74917 10.0489C6.67316 11.5288 6.91516 13.1032 7.2999 14.1874C7.79575 15.5847 9.27384 16.1055 10.2448 16.4688C10.2448 16.4688 9.82944 17.4113 9.95135 17.9969C10.0733 18.5826 9.86428 22 9.86428 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg></a>
+            <div className="social-icon">
+              <a href="https://www.linkedin.com/in/anant-moti-465893287" target="_blank" rel="noreferrer">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.996 16V15.9993H16V10.1313C16 7.26065 15.382 5.04932 12.026 5.04932C10.4127 5.04932 9.33 5.93465 8.888 6.77398H8.84133V5.31732H5.65933V15.9993H8.97267V10.71C8.97267 9.31732 9.23667 7.97065 10.9613 7.97065C12.6607 7.97065 12.686 9.55998 12.686 10.7993V16H15.996Z" fill="white"/>
+                  <path d="M0.264008 5.31812H3.58134V16.0001H0.264008V5.31812Z" fill="white"/>
+                  <path d="M1.92133 0C0.860667 0 0 0.860667 0 1.92133C0 2.982 0.860667 3.86067 1.92133 3.86067C2.982 3.86067 3.84267 2.982 3.84267 1.92133C3.842 0.860667 2.98133 0 1.92133 0Z" fill="white"/>
+                </svg>
+              </a>
+              <a href="https://github.com/DISCONECTED-png" target="_blank" rel="noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" color="#ffffff" fill="none">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
             </div>
           </span>
         </ul>

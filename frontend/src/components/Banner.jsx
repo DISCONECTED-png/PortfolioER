@@ -40,19 +40,20 @@ const Banner = () => {
   return (
     <div id="home">
       <div className="banner">
-      <div className="content">
-        <span className="tagline">Welcome to My Portfolio</span>
-        <h1>
-          Hi, I am Anant, <span className="wrap">{text}</span>
-        </h1>
-        <p>
-        CS undergrad at IIIT Agartala with hands-on expertise in the MERN stack, Flutter, Firebase, 
-            and NLP. Passionate about building scalable, user-focused apps and websites with clean 
+        <div className="content">
+          <span className="tagline">Welcome to My Portfolio</span>
+          <h1>
+            Hi, I am Anant, <span className="wrap">{text}</span>
+          </h1>
+          <div className="accent-line"></div>
+          <p>
+            CS undergrad at IIIT Agartala with hands-on expertise in the MERN stack, Flutter, Firebase,
+            and NLP. Passionate about building scalable, user-focused apps and websites with clean
             architecture and seamless user experiences.
-        </p>
-        <button
+          </p>
+          <button
   onClick={() => {
-    const section = document.getElementById('cont');
+    const section = document.getElementById('contact');
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
@@ -60,11 +61,13 @@ const Banner = () => {
 >
   Let's Connect <ArrowRightCircle />
 </button>
-
+        </div>
+        <div className="scroll-hint">
+          <div className="scroll-dot"></div>
+          <span>Scroll</span>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 

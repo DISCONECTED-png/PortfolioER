@@ -27,41 +27,44 @@ const experiences = [
 const Experience = () => {
   return (
     <section id="experience" className="experience-section">
+      <span className="experience-label">Where I've Worked</span>
       <h2 className="section-title">Experience</h2>
+      <div className="section-accent"></div>
       <div className="experience-list">
         {experiences.map((exp, index) => (
           <motion.div
-            className="experience-card"
+            className="experience-item"
             key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
           >
-            <div className="experience-header">
-              <h3>
-                {exp.role}{" "}
-                <span
-                  className={`status-badge ${
-                    exp.status === "Ongoing" ? "ongoing" : "completed"
-                  }`}
-                >
+            <div className="timeline-dot">
+              <div className={`dot-ring ${exp.status === 'Ongoing' ? 'pulse' : ''}`}></div>
+            </div>
+            <div className="experience-card">
+              <div className="card-top">
+                <h3>{exp.role}</h3>
+                <span className={`status-badge ${exp.status === 'Ongoing' ? 'ongoing' : 'completed'}`}>
                   {exp.status}
                 </span>
-              </h3>
-              <h4>{exp.company}</h4>
-              <p className="date">
-                {exp.date} • {exp.type}
-              </p>
-            </div>
-            <p className="description">{exp.description}</p>
-            <div className="tags">
-              {exp.tags.map((tag, i) => (
-                <span className="tag" key={i}>
-                  {tag}
-                </span>
-              ))}
+              </div>
+              <div className="company-row">
+                <div className="company-avatar">
+                  {exp.company.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                </div>
+                <span className="company-name">{exp.company}</span>
+              </div>
+              <div className="date-type">
+                {exp.date} <span>{exp.type}</span>
+              </div>
+              <p className="description">{exp.description}</p>
+              <div className="tags">
+                {exp.tags.map((tag, i) => (
+                  <span className="tag" key={i}>{tag}</span>
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}

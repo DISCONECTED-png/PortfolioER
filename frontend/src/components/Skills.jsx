@@ -36,9 +36,13 @@ const Skills = () => {
         <Row>
           <Col>
             <div className="skill-box">
+              <span className="skills-label">What I Work With</span>
               <h2>Skills</h2>
+              <div className="skills-accent"></div>
               <p>
-              Equipped with a diverse skill set spanning frontend and backend development, database management, and cutting-edge technologies, I craft seamless and innovative digital experiences tailored to user needs.
+                Equipped with a diverse skill set spanning frontend and backend development,
+                database management, and cutting-edge technologies, I craft seamless and
+                innovative digital experiences tailored to user needs.
               </p>
               <Carousel
                 responsive={responsive}
@@ -48,62 +52,45 @@ const Skills = () => {
                 className="skill-slider"
               >
                 <div className="item">
-                  <img
-                    src={nodeimg}
-                    alt="Node JS"
-                  />
+                  <img src={nodeimg} alt="Node JS" />
                   <h4>Node JS</h4>
+                  <span className="skill-tag">Backend</span>
                 </div>
                 <div className="item">
-                  <img
-                    src="https://www.manektech.com/storage/developer/1646733543.webp"
-                    alt="Web Development"
-                  />
+                  <img src="https://www.manektech.com/storage/developer/1646733543.webp" alt="Express JS" />
                   <h4>Express JS</h4>
+                  <span className="skill-tag">Backend</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={reactimg}
-                    alt="React"
-                  />
+                  <img src={reactimg} alt="React" />
                   <h4>React JS</h4>
+                  <span className="skill-tag">Frontend</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={mongoimg}
-                    alt="Mongo"
-                  />
-                  <h4>Mongodb</h4>
+                  <img src={mongoimg} alt="Mongo" />
+                  <h4>MongoDB</h4>
+                  <span className="skill-tag">Database</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={flutterimg}
-                    alt="Flutter"
-                  />
+                  <img src={flutterimg} alt="Flutter" />
                   <h4>Flutter</h4>
+                  <span className="skill-tag">Mobile</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={firebaseimg}
-                    alt="Firebase"
-                  />
+                  <img src={firebaseimg} alt="Firebase" />
                   <h4>Firebase</h4>
+                  <span className="skill-tag">Cloud</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={sql}
-                    alt="SQL"
-                  />
+                  <img src={sql} alt="SQL" />
                   <h4>SQL</h4>
+                  <span className="skill-tag">Database</span>
                 </div>
                 <div className="item">
-                  <img
-                    src={unreal}
-                    alt="Unreal"
-                  />
-                  <h4>Unreal</h4>
+                  <img src={unreal} alt="Unreal" />
+                  <h4>Unreal Engine</h4>
+                  <span className="skill-tag">Game Dev</span>
                 </div>
-                
               </Carousel>
             </div>
           </Col>
