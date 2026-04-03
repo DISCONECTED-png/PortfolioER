@@ -1,65 +1,103 @@
-import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
+import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-inner">
-
-        {/* Brand */}
-        <div className="footer-brand">
+    <footer className="manga-footer">
+      <div className="manga-footer-inner">
+        
+        {/* Brand / Intel */}
+        <motion.div 
+          className="footer-panel footer-brand"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
           <div className="footer-logo">
-            <div className="footer-logo-mark">A</div>
-            <span className="footer-logo-name">Anant Moti</span>
+            <div className="footer-logo-hanko">A</div>
+            <div className="footer-logo-text">
+              <span>ANANT MOTI</span>
+              <span className="footer-logo-jp">開発者</span>
+            </div>
           </div>
-          <p>Crafting code, shaping ideas, and building digital wonders — where creativity and technology collide.</p>
-          <div className="footer-socials">
-            <a href="https://www.linkedin.com/in/anant-moti-465893287" target="_blank" rel="noreferrer" className="footer-social-btn">
-              <svg viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <p className="footer-desc">
+            Forging digital constructs and high-speed architectures. Where raw execution meets clean code.
+          </p>
+          <div className="manga-footer-socials">
+            <a href="https://www.linkedin.com/in/anant-moti-465893287" target="_blank" rel="noreferrer" className="manga-social-square">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.996 16V15.9993H16V10.1313C16 7.26065 15.382 5.04932 12.026 5.04932C10.4127 5.04932 9.33 5.93465 8.888 6.77398H8.84133V5.31732H5.65933V15.9993H8.97267V10.71C8.97267 9.31732 9.23667 7.97065 10.9613 7.97065C12.6607 7.97065 12.686 9.55998 12.686 10.7993V16H15.996Z"/>
+                  <path d="M0.264008 5.31812H3.58134V16.0001H0.264008V5.31812Z"/>
+                  <path d="M1.92133 0C0.860667 0 0 0.860667 0 1.92133C0 2.982 0.860667 3.86067 1.92133 3.86067C2.982 3.86067 3.84267 2.982 3.84267 1.92133C3.842 0.860667 2.98133 0 1.92133 0Z"/>
+                </svg>
             </a>
-            <a href="https://github.com/DISCONECTED-png" target="_blank" rel="noreferrer" className="footer-social-btn">
-              <svg viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            <a href="https://github.com/DISCONECTED-png" target="_blank" rel="noreferrer" className="manga-social-square">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="currentColor" fill="none">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
             </a>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Nav */}
-        <div className="footer-nav">
-          <h5>Quick Links</h5>
+        {/* Nav Links */}
+        <motion.div 
+          className="footer-panel footer-nav"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          viewport={{ once: true }}
+        >
+          <h5 className="footer-heading">DIRECTORY <span className="footer-heading-jp">リンク</span></h5>
           <ul>
-            {["Home", "Skills", "Experience", "Projects", "Contact"].map((item) => (
+            {["Home", "Skills", "Experience", "Project", "Contact"].map((item) => (
               <li key={item}>
-                <a href={`#${item.toLowerCase()}`}>{item}</a>
+                <a href={`#${item.toLowerCase()}`}>
+                  <span className="nav-bracket">[</span> {item.toUpperCase()} <span className="nav-bracket">]</span>
+                </a>
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* Contact */}
-        <div className="footer-contact">
-          <h5>Contact</h5>
+        {/* Contact Data */}
+        <motion.div 
+          className="footer-panel footer-contact"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h5 className="footer-heading">NETWORK <span className="footer-heading-jp">ネットワーク</span></h5>
           <div className="footer-contact-row">
-            <svg viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
+            <span className="contact-icon">[ E ]</span>
             <span>anantmoti05@gmail.com</span>
           </div>
           <div className="footer-contact-row">
-            <svg viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            <span className="contact-icon">[ P ]</span>
             <span>+91 8447082847</span>
           </div>
           <div className="footer-contact-row">
-            <svg viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span className="contact-icon">[ L ]</span>
             <span>IIIT Agartala, India</span>
           </div>
-        </div>
+        </motion.div>
 
       </div>
 
-      <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Anant Moti. All rights reserved.</p>
-        <a href="#home" className="footer-back-top">
-          Back to top
-          <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-        </a>
+      {/* Bottom Terminal Bar */}
+      <div className="manga-footer-bottom">
+        <div className="footer-bottom-content">
+          <p>
+            <span className="red-text">©</span> {new Date().getFullYear()} ANANT MOTI. // ALL RIGHTS RESERVED.
+          </p>
+          <a href="#home" className="tactical-back-top">
+            RETURN_TO_TOP 
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="square">
+              <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </footer>
   );

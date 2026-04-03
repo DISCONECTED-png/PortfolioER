@@ -1,6 +1,5 @@
-import { useState } from "react";
-import React from "react";
-import Contactimg from "./Contactimg";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -12,7 +11,7 @@ export const Contact = () => {
   };
 
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState("Send");
+  const [buttonText, setButtonText] = useState("TRANSMIT");
   const [status, setStatus] = useState({});
 
   const onFormUpdate = (category, value) => {
@@ -24,92 +23,152 @@ export const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText("Sending...");
-    let response = await fetch("https://portfolioer-backend.onrender.com/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code === 200) {
-      setStatus({ success: true, message: "Message sent successfully" });
-    } else {
-      setStatus({
-        success: false,
-        message: "Something went wrong, please try again later.",
+    setButtonText("ENCRYPTING...");
+    try {
+      let response = await fetch("https://portfolioer-backend.onrender.com/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(formDetails),
       });
+      setButtonText("TRANSMIT");
+      let result = await response.json();
+      setFormDetails(formInitialDetails);
+      if (result.code === 200) {
+        setStatus({ success: true, message: "[ SYS_200 ] TRANSMISSION SUCCESSFUL." });
+      } else {
+        setStatus({ success: false, message: "[ ERR_500 ] CONNECTION SEVERED. RETRY." });
+      }
+    } catch (error) {
+      setButtonText("TRANSMIT");
+      setStatus({ success: false, message: "[ ERR_NET ] UPLINK FAILED." });
     }
   };
 
   return (
-    <section className="contact" id="contact">
-      {/* Left info panel */}
-      <div className="contact-info">
-        <span className="contact-label">Say Hello</span>
-        <h2>Get In Touch</h2>
-        <div className="contact-accent"></div>
-        <p>Have a project in mind or just want to chat? Feel free to reach out — I'm always open to new opportunities and collaborations.</p>
-  
-        <div className="contact-details">
-          <div className="contact-detail-row">
-            <div className="contact-detail-icon">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0l-9.75 6.75L2.25 6.75"/></svg>
-            </div>
-            <div className="contact-detail-text">
-              <span>Email</span>
-              <span>anantmoti05@gmail.com</span>
-            </div>
+    <section className="god-tier-contact-section" id="contact">
+      {/* Background Cyber Grid */}
+      <div className="contact-cyber-grid"></div>
+
+      <div className="manga-container contact-split">
+        
+        {/* LEFT PANEL: TACTICAL INTEL */}
+        <motion.div 
+          className="contact-intel-panel"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          <div className="section-header">
+            <span className="skills-label">FINAL CHAPTER / 最終章</span>
+            <h2 className="glitch-text" data-text="COMM_LINK">COMM_LINK</h2>
+            <div className="katana-slash-static"></div>
           </div>
-          <div className="contact-detail-row">
-            <div className="contact-detail-icon">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-            </div>
-            <div className="contact-detail-text">
-              <span>Location</span>
-              <span>Delhi, India</span>
-            </div>
-          </div>
-          <div className="contact-detail-row">
-            <div className="contact-detail-icon">
-              <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div className="contact-detail-text">
-              <span>Response Time</span>
-              <span>Within 24 hours</span>
-            </div>
-          </div>
-        </div>
-  
-        <div className="contact-socials">
-          <a href="https://github.com/DISCONECTED-png" target="_blank" rel="noreferrer" className="contact-social-btn">
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="contact-social-btn">
-            <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2" stroke="#ff8080" strokeWidth="1.8"/></svg>
-          </a>
           
-        </div>
-      </div>
-  
-      {/* Right form */}
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          <div className="form-row">
-            <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate("firstName", e.target.value)} />
-            <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate("lastName", e.target.value)} />
+          <p className="manga-subtitle">
+            Secure frequency established. Drop a message for collaborations, freelance missions, or just to sync up.
+          </p>
+
+          {/* Live Uplink Status */}
+          <div className="uplink-status-box">
+            <div className="signal-bars">
+              <span className="bar b1"></span>
+              <span className="bar b2"></span>
+              <span className="bar b3"></span>
+              <span className="bar b4"></span>
+            </div>
+            <span className="uplink-text blink-fast">UPLINK_SECURE</span>
           </div>
-          <input type="email" value={formDetails.email} placeholder="Email Address" onChange={(e) => onFormUpdate("email", e.target.value)} />
-          <input type="tel" value={formDetails.phone} placeholder="Phone No." onChange={(e) => onFormUpdate("phone", e.target.value)} />
-          <textarea rows="6" value={formDetails.message} placeholder="Tell me about your project or just say hi..." onChange={(e) => onFormUpdate("message", e.target.value)}></textarea>
-          <button type="submit"><span>{buttonText}</span></button>
-          {status.message && (
-            <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
-          )}
-        </form>
+
+          <div className="intel-dossier-grid">
+            <div className="dossier-row">
+              <span className="dossier-label">[ TARGET_ID ]</span>
+              <span className="dossier-value">ANANT MOTI <span className="jp-intel">アナント</span></span>
+            </div>
+            <div className="dossier-row">
+              <span className="dossier-label">[ FREQ_NET ]</span>
+              <span className="dossier-value highlight-red">anantmoti05@gmail.com</span>
+            </div>
+            <div className="dossier-row">
+              <span className="dossier-label">[ LOC_CORD ]</span>
+              <span className="dossier-value">DELHI, INDIA</span>
+            </div>
+            <div className="dossier-row">
+              <span className="dossier-label">[ PING_EST ]</span>
+              <span className="dossier-value">&lt; 24 HOURS</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* RIGHT PANEL: TERMINAL INPUT MATRIX */}
+        <motion.div 
+          className="contact-terminal-wrapper"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {/* Tactical Corners */}
+          <div className="ui-corner tl"></div>
+          <div className="ui-corner tr"></div>
+          <div className="ui-corner bl"></div>
+          
+          {/* Background Scanlines inside the form */}
+          <div className="terminal-scanlines"></div>
+
+          <form onSubmit={handleSubmit} className="god-tier-form">
+            <div className="form-header">
+              <span className="form-sys-title">MSG_TERMINAL <span className="blink-dot-small"></span></span>
+              <span className="form-jp-title">通信</span>
+            </div>
+
+            <div className="form-grid-row">
+              <div className="terminal-input-group">
+                <input type="text" required value={formDetails.firstName} onChange={(e) => onFormUpdate("firstName", e.target.value)} />
+                <label>&gt; FIRST_NAME_</label>
+                <div className="input-focus-border"></div>
+              </div>
+              <div className="terminal-input-group">
+                <input type="text" required value={formDetails.lastName} onChange={(e) => onFormUpdate("lastName", e.target.value)} />
+                <label>&gt; LAST_NAME_</label>
+                <div className="input-focus-border"></div>
+              </div>
+            </div>
+
+            <div className="terminal-input-group">
+              <input type="email" required value={formDetails.email} onChange={(e) => onFormUpdate("email", e.target.value)} />
+              <label>&gt; EMAIL_ADDRESS_</label>
+              <div className="input-focus-border"></div>
+            </div>
+
+            <div className="terminal-input-group">
+              <input type="tel" required value={formDetails.phone} onChange={(e) => onFormUpdate("phone", e.target.value)} />
+              <label>&gt; COMMS_NUMBER_</label>
+              <div className="input-focus-border"></div>
+            </div>
+
+            <div className="terminal-input-group textarea-group">
+              <textarea rows="4" required value={formDetails.message} onChange={(e) => onFormUpdate("message", e.target.value)}></textarea>
+              <label>&gt; ENCRYPTED_PAYLOAD_</label>
+              <div className="input-focus-border"></div>
+            </div>
+
+            <button type="submit" className="god-tier-submit-btn">
+              <span className="btn-text">{buttonText}</span>
+              <span className="btn-jp">送信</span>
+              <div className="btn-glitch-overlay"></div>
+            </button>
+
+            {status.message && (
+              <div className={`terminal-output ${status.success === false ? "error-out" : "success-out"}`}>
+                {status.message}
+              </div>
+            )}
+          </form>
+        </motion.div>
+
       </div>
     </section>
   );

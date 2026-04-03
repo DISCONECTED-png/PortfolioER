@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "framer-motion": "^12.23.12",
+    "framer-motion": "^12.38.0",
     "nodemailer": "^7.0.3",
     "nodemon": "^3.1.10",
     "react": "^19.0.0",

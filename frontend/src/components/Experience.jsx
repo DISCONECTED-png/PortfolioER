@@ -3,71 +3,123 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
-    role: "Software Development Intern",
+    role: "Software Dev Intern",
+    jpRole: "ソフトウェア開発",
     company: "Throttle Theory",
+    jpCompany: "スロットル・セオリー",
     date: "Aug 2025 – Sep 2025",
     type: "Remote",
     description:
       "Built the homepage for an F1 apparel platform in React + TypeScript with 12+ responsive modules and improved frontend performance by 20%.",
     tags: ["React", "TypeScript", "JavaScript"],
     status: "Completed",
+    jpStatus: "完了",
   },
   {
-    role: "Flutter & Web Development Intern",
+    role: "Flutter & Web Intern",
+    jpRole: "ウェブ開発者",
     company: "Duckcart",
+    jpCompany: "ダックカート",
     date: "Mar 2025 – Jun 2025",
     type: "Remote",
     description:
       "Refined Firebase Auth reliability (+40% sessions) and delivered 5+ MERN features with secure REST APIs and dynamic UI.",
     tags: ["Flutter", "Firebase", "MERN"],
     status: "Completed",
+    jpStatus: "完了",
   },
 ];
 
 const Experience = () => {
   return (
-    <section id="experience" className="experience-section">
-      <span className="experience-label">Where I've Worked</span>
-      <h2 className="section-title">Experience</h2>
-      <div className="section-accent"></div>
-      <div className="experience-list">
-        {experiences.map((exp, index) => (
-          <motion.div
-            className="experience-item"
-            key={index}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            viewport={{ once: true }}
-          >
-            <div className="timeline-dot">
-              <div className={`dot-ring ${exp.status === 'Ongoing' ? 'pulse' : ''}`}></div>
-            </div>
-            <div className="experience-card">
-              <div className="card-top">
-                <h3>{exp.role}</h3>
-                <span className={`status-badge ${exp.status === 'Ongoing' ? 'ongoing' : 'completed'}`}>
-                  {exp.status}
-                </span>
-              </div>
-              <div className="company-row">
-                <div className="company-avatar">
-                  {exp.company.split(' ').map(w => w[0]).join('').slice(0, 2)}
+    <section id="experience" className="manga-experience-section">
+      <div className="manga-container">
+        
+        {/* Section Header */}
+        <div className="section-header">
+          <span className="skills-label">CHAPTER 3 / 第3章</span>
+          <h2 className="glitch-text" data-text="QUEST LOG">QUEST LOG</h2>
+          <div className="katana-slash-static"></div>
+          <p className="manga-subtitle">
+            Classified mission history and field experience. <span className="highlight-red">DECRYPTION COMPLETE.</span>
+          </p>
+        </div>
+
+        <div className="manga-timeline">
+          {experiences.map((exp, index) => (
+            <motion.div
+              className="manga-timeline-item"
+              key={index}
+              initial={{ opacity: 0, x: -60, skewX: 5 }}
+              whileInView={{ opacity: 1, x: 0, skewX: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 120 
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              {/* Tactical Crosshair Marker */}
+              <div className="timeline-marker">
+                <div className="marker-crosshair">
+                  <div className="marker-diamond"></div>
                 </div>
-                <span className="company-name">{exp.company}</span>
+                {/* The glowing data stream line */}
+                <div className="marker-line">
+                  <div className="marker-pulse"></div>
+                </div>
               </div>
-              <div className="date-type">
-                {exp.date} <span>{exp.type}</span>
+
+              {/* The Action Panel */}
+              <div className="manga-exp-card">
+                
+                {/* Tactical UI Corners */}
+                <div className="ui-corner tl"></div>
+                <div className="ui-corner tr"></div>
+                <div className="ui-corner bl"></div>
+                <div className="ui-corner br"></div>
+
+                {/* Background speed lines */}
+                <div className="speed-lines-bg"></div>
+
+                <div className="exp-content">
+                  <div className="exp-header">
+                    <div className="role-wrap">
+                      <h3 className="glitch-hover" data-text={exp.role}>{exp.role}</h3>
+                      <span className="jp-text">{exp.jpRole}</span>
+                    </div>
+                    <div className="status-stamp">
+                      <span className="stamp-barcode">|||||||||</span>
+                      {exp.status} <span className="jp-stamp">{exp.jpStatus}</span>
+                    </div>
+                  </div>
+
+                  <div className="company-wrap">
+                    <span className="company-name">{exp.company}</span>
+                    <span className="company-jp">{exp.jpCompany}</span>
+                  </div>
+
+                  <div className="date-type-manga">
+                    <span className="blink-dot-small"></span>
+                    LOG_DATE: {exp.date} <span className="separator">|</span> MODE: {exp.type}_
+                  </div>
+
+                  <div className="mission-brief">
+                    <span className="brief-label">MISSION_BRIEF:</span>
+                    <p className="manga-description">{exp.description}</p>
+                  </div>
+
+                  <div className="manga-tags">
+                    {exp.tags.map((tag, i) => (
+                      <span className="manga-tag" key={i}>[{tag}]</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <p className="description">{exp.description}</p>
-              <div className="tags">
-                {exp.tags.map((tag, i) => (
-                  <span className="tag" key={i}>{tag}</span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
